@@ -11,9 +11,10 @@ from PIL import Image
 import mss
 import getpass
 import queue
+import uuid
 
 SERVER_URL = "wss://hihat.onrender.com"
-CLIENT_ID = f"{getpass.getuser()}@{socket.gethostname()}"
+CLIENT_ID = f"{getpass.getuser()}@{socket.gethostname()}_{uuid.getnode()}"
 send_queue = queue.Queue()
 current_dir = os.getcwd()
 

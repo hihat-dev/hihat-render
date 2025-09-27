@@ -123,6 +123,21 @@ app.get("/api/connected_clients", (req, res) => {
   res.json({ clients });
 });
 
+app.get("/ping", (req, res) => {
+  res.send("pong");
+});
+
+function selfPing() {
+  const url = `http://localhost:${PORT}/ping`;
+  http.get(url, (res) => {
+    console.log(`Self-ping status: ${res.statusCode}`);
+  }).on("error", (err) => {
+    console.error("Erro no self-ping:", err.message);
+  });
+}
+
+setInterval(selfPing, 4 * 60 * 1000);
+
 server.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

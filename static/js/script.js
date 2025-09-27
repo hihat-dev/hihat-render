@@ -447,6 +447,16 @@ function openComputerControl(computer) {
             color: #666;
         }
 
+        .message-area input{
+            flex: 1;
+            background: #000;
+            border: none;
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            padding: 0.5rem;
+            outline: none;
+        }
+
         .terminal-area {
             height: 50vh;
             background: #1a1a1a;
@@ -522,6 +532,10 @@ function openComputerControl(computer) {
             <input type="text" id="command-input" placeholder="Digite um comando..." onkeypress="handleCommand(event)">
             <button class="btn btn-primary" onclick="executeCommand()">Executar</button>
           </div>
+        <div class=message-area>
+            <input type="text" id="message-input" placeholder="Mande uma mensagem...">
+            <button class="btn btn-primary" onclick="sendMessage()">Enviar</button>
+        </div>
         </div>
       </div>
 
@@ -584,6 +598,13 @@ function openComputerControl(computer) {
 
 function shutdownComputer() {
   executeCommand('shutdown /s /t 0');
+}
+
+function sendMessage() {
+  let message = document.querySelector("#message-input").value;
+  console.log(message);
+  document.getElementById("command-input").value = 'powershell -command "msg $env:USERNAME \"' + message + '\""' ;
+  executeCommand();
 }
 
       </script>

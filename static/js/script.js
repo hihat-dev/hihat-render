@@ -348,12 +348,8 @@ function deleteVulnerability(id) {
 function checkComputersStatus() {
   Object.keys(computers).forEach((lab) => {
     computers[lab].forEach((computer) => {
-      // Simulate random status changes for demo
-      if (Math.random() < 0.1) {
-        // 10% chance to change status
         const newsstatus = computer.status === "online" ? "offline" : "online"
         updateComputerStatus(computer.id, lab, newsstatus)
-      }
     })
   })
 }

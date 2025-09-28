@@ -546,7 +546,7 @@ function openComputerControl(computer) {
             <button class="btn btn-primary" onclick="sendMessage()">Enviar</button>
           </div>
           <div>
-            <input type="text" id="audio-input" placeholder="Mande uma mensagem...">
+            <input type="text" id="audio-input" placeholder="Mande uma audio...">
             <button class="btn btn-primary" onclick="sendAudio()">Enviar</button>
           </div>
         </div>
@@ -634,6 +634,18 @@ function sendAudio() {
   input.value = ""
   executeCommand();
 }
+
+  document.getElementById("message-input").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  });
+
+  document.getElementById("audio-input").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      sendAudio();
+      e.preventDefault();
+    }
 
 
 

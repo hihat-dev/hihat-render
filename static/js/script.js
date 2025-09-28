@@ -641,14 +641,12 @@ function sendAudio() {
     }
   });
 
-  document.getElementById("audio-input").addEventListener("keydown", function(e) {
+document.getElementById("audio-input").addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
       sendAudio();
       e.preventDefault();
     }
-
-
-
+});
       </script>
     </body>
     </html>

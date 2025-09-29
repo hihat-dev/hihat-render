@@ -1,5 +1,6 @@
 const express = require("express");
 const session = require("express-session");
+const FileStore = require("session-file-store")(session);
 const http = require("http");
 const https = require("https");
 const WebSocket = require("ws");
@@ -13,6 +14,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("static"));
 app.use(express.json());
 app.use(session({
+  store: new FileStore({
+    path: "./sessions",
+    ttl: 3600
+  }),
   secret: "blackhatsecret",
   resave: false,
   saveUninitialized: false,

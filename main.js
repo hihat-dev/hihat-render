@@ -4,16 +4,23 @@ const FileStore = require("session-file-store")(session);
 const http = require("http");
 const https = require("https");
 const WebSocket = require("ws");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 const PORT = 8000;
 const url = "https://hihat.onrender.com/ping";
+const sessionPath = path.join(process.cwd(), "sessions");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("static"));
 app.use(express.json());
+
+if (!fs.existsSync(sessionPath)) {
+  fs.mkdirSync(sessionPath, { recursive: true });
+}
 app.use(session({
   store: new FileStore({
     path: "./sessions",

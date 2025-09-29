@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const http = require("http");
+const https = require("https");
 const WebSocket = require("ws");
 
 const app = express();
@@ -30,7 +31,7 @@ const {
 
 const knownClients = new Map();
 apiModule.setKnownClients(knownClients);
-apiModule.setWSServer(wss); // <--- Adiciona o wss para acesso no módulo
+apiModule.setWSServer(wss);
 
 app.use("/", authRoutes);
 app.use("/", painelRoutes);
@@ -57,7 +58,7 @@ wss.on("connection", (ws, req) => {
           status: "online"
         };
 
-        notifyNewComputer(computerInfo); // apenas info, wss agora é global no módulo
+        notifyNewComputer(computerInfo);
         return;
       }
 
@@ -90,8 +91,7 @@ wss.on("connection", (ws, req) => {
           handleResult(data.output);
         } else if (data.type === "screen" && data.image) {
           ws.latestImage = data.image;
-
-          // Envia para todos painéis conectados
+          
           wss.clients.forEach(client => {
             if (client.readyState === WebSocket.OPEN && client.role === "panel") {
               client.send(JSON.stringify({

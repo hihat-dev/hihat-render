@@ -9,6 +9,7 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 const PORT = 8000;
+const url = "https://hihat.onrender.com/ping";
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("static"));

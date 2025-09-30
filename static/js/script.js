@@ -148,9 +148,7 @@ function createComputerElement(computer) {
     `
 
   div.addEventListener("click", () => {
-    if (computer.status === "online") {
-      openComputerControl(computer)
-    }
+    openComputerControl(computer)
   })
 
   return div

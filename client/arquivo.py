@@ -13,7 +13,7 @@ import getpass
 import queue
 import uuid
 
-SERVER_URL = "wss://hihat.onrender.com"
+SERVER_URL = "wss://hihat.squareweb.app"
 CLIENT_ID = f"{getpass.getuser()}@{socket.gethostname()}_{uuid.getnode()}"
 send_queue = queue.Queue()
 current_dir = os.getcwd()

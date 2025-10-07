@@ -11,7 +11,6 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 const PORT = 80;
-const url = "https://hihat.onrender.com/ping";
 const sessionPath = path.join(process.cwd(), "sessions");
 
 app.use(express.urlencoded({ extended: true }));

